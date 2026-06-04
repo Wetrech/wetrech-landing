@@ -303,6 +303,19 @@
     }
     @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
+    /* ─── PARTICLE DOTS ─── */
+    .particle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 10px rgba(255,92,0,0.8);
+      pointer-events: none;
+      transition: transform 0.15s ease-out;
+      z-index: 10;
+    }
+
     /* ─── LAMP DEMO ─── */
     .lamp-demo-section {
       background: var(--black);
@@ -898,6 +911,74 @@
 
   // Init lamp on
   toggleLamp();
+
+  // ─── MOUSE REPEL ───
+  const aboutVisual = document.querySelector('.about-visual');
+  if (aboutVisual) {
+    // Create floating particles around the circuit
+    const particleCount = 8;
+    const particles = [];
+
+    for (let i = 0; i < particleCount; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const angle = (i / particleCount) * Math.PI * 2;
+      const radius = 80 + Math.random() * 60;
+      p.dataset.baseX = Math.cos(angle) * radius;
+      p.dataset.baseY = Math.sin(angle) * radius;
+      p.dataset.angle = angle;
+      p.dataset.radius = radius;
+      p.dataset.speed = 0.3 + Math.random() * 0.4;
+      p.dataset.offsetAngle = Math.random() * Math.PI * 2;
+      aboutVisual.appendChild(p);
+      particles.push(p);
+    }
+
+    let mouseX = null;
+    let mouseY = null;
+    let tick = 0;
+
+    aboutVisual.addEventListener('mousemove', (e) => {
+      const rect = aboutVisual.getBoundingClientRect();
+      mouseX = e.clientX - rect.left - aboutVisual.offsetWidth / 2;
+      mouseY = e.clientY - rect.top - aboutVisual.offsetHeight / 2;
+    });
+
+    aboutVisual.addEventListener('mouseleave', () => {
+      mouseX = null;
+      mouseY = null;
+    });
+
+    function animateParticles() {
+      tick += 0.02;
+      particles.forEach((p, i) => {
+        const baseAngle = parseFloat(p.dataset.angle) + tick * parseFloat(p.dataset.speed);
+        const radius = parseFloat(p.dataset.radius);
+        let px = Math.cos(baseAngle) * radius;
+        let py = Math.sin(baseAngle) * radius;
+
+        if (mouseX !== null && mouseY !== null) {
+          const dx = px - mouseX;
+          const dy = py - mouseY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const repelRadius = 100;
+          if (dist < repelRadius) {
+            const force = (repelRadius - dist) / repelRadius;
+            px += (dx / dist) * force * 60;
+            py += (dy / dist) * force * 60;
+          }
+        }
+
+        const cx = aboutVisual.offsetWidth / 2;
+        const cy = aboutVisual.offsetHeight / 2;
+        p.style.left = (cx + px - 5) + 'px';
+        p.style.top = (cy + py - 5) + 'px';
+      });
+      requestAnimationFrame(animateParticles);
+    }
+
+    animateParticles();
+  }
 </script>
 
 </body>
