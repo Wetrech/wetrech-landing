@@ -17,11 +17,8 @@
       --gray: #888;
       --border: rgba(255,92,0,0.15);
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
       background: var(--black);
       color: var(--white);
@@ -44,7 +41,6 @@
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
-
     .logo-nav {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 900;
@@ -52,11 +48,8 @@
       letter-spacing: 2px;
       color: var(--white);
     }
-
     .logo-nav span { color: var(--orange); }
-
     .lang-btns { display: flex; gap: 6px; }
-
     .lang-btn {
       background: transparent;
       border: 1px solid var(--border);
@@ -70,7 +63,6 @@
       transition: all 0.2s;
       text-transform: uppercase;
     }
-
     .lang-btn:hover, .lang-btn.active {
       background: var(--orange);
       border-color: var(--orange);
@@ -87,7 +79,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .hero::before {
       content: '';
       position: absolute;
@@ -96,7 +87,6 @@
       background: radial-gradient(circle, rgba(255,92,0,0.12) 0%, transparent 70%);
       pointer-events: none;
     }
-
     .hero::after {
       content: '';
       position: absolute;
@@ -104,7 +94,6 @@
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--orange), transparent);
     }
-
     .hero-tag {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 11px;
@@ -116,7 +105,6 @@
       opacity: 0;
       animation: fadeUp 0.8s ease forwards 0.2s;
     }
-
     .hero-title {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 900;
@@ -128,14 +116,11 @@
       opacity: 0;
       animation: fadeUp 0.8s ease forwards 0.4s;
     }
-
     .hero-title .accent { color: var(--orange); }
-
     .hero-title .outline {
       -webkit-text-stroke: 2px var(--white);
       color: transparent;
     }
-
     .hero-divider {
       width: 80px;
       height: 3px;
@@ -144,7 +129,6 @@
       opacity: 0;
       animation: fadeUp 0.8s ease forwards 0.6s;
     }
-
     .hero-sub {
       font-size: clamp(16px, 2vw, 20px);
       font-weight: 300;
@@ -154,7 +138,6 @@
       opacity: 0;
       animation: fadeUp 0.8s ease forwards 0.8s;
     }
-
     .hero-cta {
       margin-top: 48px;
       display: flex;
@@ -163,7 +146,6 @@
       opacity: 0;
       animation: fadeUp 0.8s ease forwards 1s;
     }
-
     .btn-primary {
       background: var(--orange);
       color: #fff;
@@ -180,9 +162,7 @@
       transition: background 0.2s, transform 0.2s;
       clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
     }
-
     .btn-primary:hover { background: var(--orange-dim); transform: translateY(-2px); }
-
     .btn-secondary {
       background: transparent;
       color: var(--white);
@@ -198,7 +178,6 @@
       display: inline-block;
       transition: border-color 0.2s, color 0.2s;
     }
-
     .btn-secondary:hover { border-color: var(--orange); color: var(--orange); }
 
     /* ─── STATS ─── */
@@ -208,15 +187,12 @@
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
-
     .stat {
       padding: 48px;
       border-right: 1px solid var(--border);
       position: relative;
     }
-
     .stat:last-child { border-right: none; }
-
     .stat-num {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 900;
@@ -224,7 +200,6 @@
       color: var(--orange);
       line-height: 1;
     }
-
     .stat-label {
       font-size: 13px;
       color: var(--gray);
@@ -237,7 +212,6 @@
       padding: 100px 48px;
       position: relative;
     }
-
     .section-tag {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 11px;
@@ -247,7 +221,6 @@
       text-transform: uppercase;
       margin-bottom: 16px;
     }
-
     .section-title {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 800;
@@ -256,7 +229,6 @@
       line-height: 1;
       margin-bottom: 32px;
     }
-
     .section-body {
       font-size: 16px;
       line-height: 1.8;
@@ -272,7 +244,6 @@
       gap: 80px;
       align-items: center;
     }
-
     .about-visual {
       position: relative;
       height: 400px;
@@ -280,7 +251,6 @@
       align-items: center;
       justify-content: center;
     }
-
     .circuit {
       width: 300px;
       height: 300px;
@@ -289,7 +259,6 @@
       position: relative;
       animation: spin 20s linear infinite;
     }
-
     .circuit::before {
       content: '';
       position: absolute;
@@ -298,7 +267,6 @@
       border-radius: 50%;
       animation: spin 10s linear infinite reverse;
     }
-
     .circuit::after {
       content: '';
       position: absolute;
@@ -307,7 +275,6 @@
       border-radius: 50%;
       opacity: 0.4;
     }
-
     .circuit-dot {
       position: absolute;
       width: 12px;
@@ -319,7 +286,6 @@
       transform: translateX(-50%);
       box-shadow: 0 0 20px var(--orange);
     }
-
     .circuit-center {
       position: absolute;
       width: 60px;
@@ -335,12 +301,193 @@
       letter-spacing: 1px;
       box-shadow: 0 0 40px rgba(255,92,0,0.4);
     }
-
     @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    /* ─── LAMP DEMO ─── */
+    .lamp-demo-section {
+      background: var(--black);
+      padding: 100px 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .lamp-demo-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--orange), transparent);
+    }
+    .lamp-demo-title {
+      text-align: center;
+    }
+    .lamp-scene {
+      position: relative;
+      width: 320px;
+      height: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+    /* Pole */
+    .lamp-pole {
+      width: 6px;
+      height: 200px;
+      background: linear-gradient(180deg, #333 0%, #555 100%);
+      border-radius: 3px;
+      margin-top: 20px;
+    }
+    /* Arm */
+    .lamp-arm {
+      width: 80px;
+      height: 6px;
+      background: linear-gradient(90deg, #444, #555);
+      border-radius: 3px;
+      position: absolute;
+      top: 166px;
+      left: 50%;
+      transform: translateX(-3px);
+    }
+    /* Head */
+    .lamp-head {
+      position: absolute;
+      top: 140px;
+      left: calc(50% + 44px);
+      transform: translateX(-50%);
+      width: 80px;
+      height: 36px;
+      background: linear-gradient(180deg, #444 0%, #333 100%);
+      border-radius: 8px 8px 4px 4px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+    /* Light bulb shape */
+    .lamp-bulb {
+      width: 60px;
+      height: 18px;
+      border-radius: 0 0 30px 30px;
+      background: #222;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    .lamp-bulb.on {
+      background: #fff9e6;
+      box-shadow: 0 0 30px 10px rgba(255, 220, 80, 0.6), 0 0 80px 30px rgba(255, 180, 0, 0.2);
+    }
+    /* Ground light cone */
+    .lamp-cone {
+      position: absolute;
+      top: 175px;
+      left: calc(50% + 14px);
+      width: 0;
+      height: 0;
+      border-left: 90px solid transparent;
+      border-right: 90px solid transparent;
+      border-top: 160px solid transparent;
+      transition: border-top-color 0.3s;
+      pointer-events: none;
+      transform: translateX(-50%);
+    }
+    .lamp-cone.on {
+      border-top-color: rgba(255, 220, 80, 0.08);
+    }
+    /* Ground circle */
+    .lamp-ground {
+      position: absolute;
+      bottom: 0;
+      left: calc(50% + 14px);
+      transform: translateX(-50%);
+      width: 160px;
+      height: 30px;
+      border-radius: 50%;
+      background: transparent;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    .lamp-ground.on {
+      background: radial-gradient(ellipse, rgba(255,200,50,0.15) 0%, transparent 70%);
+      box-shadow: 0 0 40px 10px rgba(255,200,50,0.08);
+    }
+    /* Click hint */
+    .lamp-hint {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: var(--gray);
+      text-transform: uppercase;
+      text-align: center;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+
+    /* Brightness slider */
+    .brightness-control {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: 280px;
+    }
+    .brightness-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: var(--gray);
+      text-transform: uppercase;
+    }
+    .brightness-value {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--orange);
+      line-height: 1;
+    }
+    .brightness-slider {
+      width: 100%;
+      -webkit-appearance: none;
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+    }
+    .brightness-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--orange);
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255,92,0,0.5);
+      transition: box-shadow 0.2s;
+    }
+    .brightness-slider::-webkit-slider-thumb:hover {
+      box-shadow: 0 0 20px rgba(255,92,0,0.8);
+    }
+    .lamp-status {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border: 1px solid var(--border);
+      color: var(--gray);
+      transition: all 0.3s;
+    }
+    .lamp-status.on {
+      border-color: var(--orange);
+      color: var(--orange);
+      box-shadow: 0 0 10px rgba(255,92,0,0.2);
+    }
 
     /* ─── PRODUCT ─── */
     .product { background: var(--black); }
-
     .product-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -349,7 +496,6 @@
       margin-top: 60px;
       border: 1px solid var(--border);
     }
-
     .product-card {
       background: var(--dark);
       padding: 40px;
@@ -357,9 +503,7 @@
       overflow: hidden;
       transition: background 0.3s;
     }
-
     .product-card:hover { background: var(--dark2); }
-
     .product-card::before {
       content: '';
       position: absolute;
@@ -370,9 +514,7 @@
       transform-origin: left;
       transition: transform 0.3s;
     }
-
     .product-card:hover::before { transform: scaleX(1); }
-
     .card-icon {
       width: 48px;
       height: 48px;
@@ -384,7 +526,6 @@
       color: var(--orange);
       font-size: 22px;
     }
-
     .card-title {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 700;
@@ -393,7 +534,6 @@
       letter-spacing: 1px;
       margin-bottom: 12px;
     }
-
     .card-body {
       font-size: 14px;
       line-height: 1.7;
@@ -408,13 +548,11 @@
       gap: 80px;
       align-items: start;
     }
-
     .contact-form {
       display: flex;
       flex-direction: column;
       gap: 16px;
     }
-
     .form-input {
       background: var(--black);
       border: 1px solid var(--border);
@@ -426,10 +564,8 @@
       transition: border-color 0.2s;
       width: 100%;
     }
-
     .form-input:focus { border-color: var(--orange); }
     .form-input::placeholder { color: var(--gray); }
-
     textarea.form-input { resize: none; height: 120px; }
 
     /* ─── FOOTER ─── */
@@ -442,7 +578,6 @@
       font-size: 12px;
       color: var(--gray);
     }
-
     .footer-logo {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 900;
@@ -450,23 +585,36 @@
       letter-spacing: 2px;
       color: var(--white);
     }
-
     .footer-logo span { color: var(--orange); }
 
     /* ─── ARABIC ─── */
-    [dir="rtl"] {
+    [dir="rtl"] body,
+    [dir="rtl"] .section-body,
+    [dir="rtl"] .card-body,
+    [dir="rtl"] .hero-sub,
+    [dir="rtl"] .stat-label,
+    [dir="rtl"] .lamp-hint,
+    [dir="rtl"] .brightness-label,
+    [dir="rtl"] .lamp-status {
       font-family: 'Noto Kufi Arabic', sans-serif;
     }
-
     [dir="rtl"] .hero-title,
     [dir="rtl"] .section-title,
     [dir="rtl"] .card-title,
-    [dir="rtl"] .logo-nav,
-    [dir="rtl"] .footer-logo {
+    [dir="rtl"] .hero-tag,
+    [dir="rtl"] .section-tag,
+    [dir="rtl"] .btn-primary,
+    [dir="rtl"] .btn-secondary {
       font-family: 'Noto Kufi Arabic', sans-serif;
       letter-spacing: 0;
     }
-
+    .logo-nav, .footer-logo {
+      font-family: 'Barlow Condensed', sans-serif !important;
+      letter-spacing: 2px !important;
+    }
+    [dir="rtl"] .lang-bar {
+      direction: ltr;
+    }
     [dir="rtl"] .stat { border-right: none; border-left: 1px solid var(--border); }
     [dir="rtl"] .stat:last-child { border-left: none; }
 
@@ -481,6 +629,7 @@
       .lang-bar { padding: 0 24px; }
       .hero { padding: 100px 24px 60px; }
       section { padding: 60px 24px; }
+      .lamp-demo-section { padding: 60px 24px; }
       .stats { grid-template-columns: 1fr; }
       .stat { border-right: none; border-bottom: 1px solid var(--border); }
       .about, .contact { grid-template-columns: 1fr; gap: 40px; }
@@ -496,9 +645,9 @@
 <nav class="lang-bar">
   <div class="logo-nav">WETRECH<span>.</span></div>
   <div class="lang-btns">
-    <button class="lang-btn active" onclick="setLang('en')">EN</button>
-    <button class="lang-btn" onclick="setLang('tr')">TR</button>
-    <button class="lang-btn" onclick="setLang('ar')">AR</button>
+    <button class="lang-btn active" onclick="setLang('en', this)">EN</button>
+    <button class="lang-btn" onclick="setLang('tr', this)">TR</button>
+    <button class="lang-btn" onclick="setLang('ar', this)">AR</button>
   </div>
 </nav>
 
@@ -525,15 +674,15 @@
 <div class="stats">
   <div class="stat">
     <div class="stat-num">40%</div>
-    <div class="stat-label" data-en="Energy Savings" data-tr="Enerji Tasarrufu" data-ar="توفير في الطاقة">Energy Savings</div>
+    <div class="stat-label" data-en="Up to Energy Savings" data-tr="Enerji Tasarrufuna Kadar" data-ar="توفير في الطاقة حتى">Up to Energy Savings</div>
   </div>
   <div class="stat">
     <div class="stat-num">24/7</div>
-    <div class="stat-label" data-en="Real-time Monitoring" data-tr="Gerçek Zamanlı İzleme" data-ar="مراقبة فورية">Real-time Monitoring</div>
+    <div class="stat-label" data-en="Monitoring & Control" data-tr="İzleme ve Kontrol" data-ar="مراقبة وتحكم">Monitoring & Control</div>
   </div>
   <div class="stat">
-    <div class="stat-num">2KM</div>
-    <div class="stat-label" data-en="Wireless Range" data-tr="Kablosuz Menzil" data-ar="نطاق لاسلكي">Wireless Range</div>
+    <div class="stat-num">∞</div>
+    <div class="stat-label" data-en="Wireless Mesh Coverage" data-tr="Kablosuz Mesh Kapsama" data-ar="تغطية شبكة لاسلكية">Wireless Mesh Coverage</div>
   </div>
 </div>
 
@@ -542,8 +691,8 @@
   <div class="about-content">
     <div class="section-tag" data-en="Who We Are" data-tr="Biz Kimiz" data-ar="من نحن">Who We Are</div>
     <h2 class="section-title" data-en="BUILT FOR SMART CITIES" data-tr="AKILLI ŞEHİRLER İÇİN" data-ar="بُنيت للمدن الذكية">BUILT FOR SMART CITIES</h2>
-    <p class="section-body" data-en="Wetrech Technologies is an Abu Dhabi based deep-tech startup building the next generation of urban infrastructure. Our retrofit IoT modules integrate seamlessly into existing street lighting networks — no new cabling, no disruption, just intelligence." data-tr="Wetrech Technologies, yeni nesil kentsel altyapıyı inşa eden, Abu Dhabi merkezli bir derin teknoloji girişimidir. Retrofit IoT modüllerimiz mevcut sokak aydınlatma ağlarına sorunsuzca entegre olur — yeni kablo yok, kesinti yok, sadece zeka." data-ar="Wetrech Technologies شركة ناشئة في مجال التكنولوجيا العميقة مقرها أبوظبي، تبني الجيل القادم من البنية التحتية الحضرية. تتكامل وحداتنا الذكية القابلة للتركيب بسلاسة مع شبكات الإضاءة الحالية — دون أسلاك جديدة، دون تعطيل، فقط ذكاء.">
-      Wetrech Technologies is an Abu Dhabi based deep-tech startup building the next generation of urban infrastructure. Our retrofit IoT modules integrate seamlessly into existing street lighting networks — no new cabling, no disruption, just intelligence.
+    <p class="section-body" data-en="Wetrech Technologies is a global deep-tech company building the next generation of urban infrastructure. Our retrofit IoT modules integrate seamlessly into existing street lighting networks — no new cabling, no disruption, just intelligence." data-tr="Wetrech Technologies, yeni nesil kentsel altyapıyı inşa eden küresel bir derin teknoloji şirketidir. Retrofit IoT modüllerimiz mevcut sokak aydınlatma ağlarına sorunsuzca entegre olur — yeni kablo yok, kesinti yok, sadece zeka." data-ar="Wetrech Technologies شركة تقنية عميقة عالمية تبني الجيل القادم من البنية التحتية الحضرية. تتكامل وحداتنا الذكية القابلة للتركيب بسلاسة مع شبكات الإضاءة الحالية — دون أسلاك جديدة، دون تعطيل، فقط ذكاء.">
+      Wetrech Technologies is a global deep-tech company building the next generation of urban infrastructure. Our retrofit IoT modules integrate seamlessly into existing street lighting networks — no new cabling, no disruption, just intelligence.
     </p>
   </div>
   <div class="about-visual">
@@ -554,6 +703,33 @@
   </div>
 </section>
 
+<!-- LAMP DEMO -->
+<div class="lamp-demo-section" id="demo">
+  <div class="lamp-demo-title">
+    <div class="section-tag" style="text-align:center" data-en="Interactive Demo" data-tr="İnteraktif Demo" data-ar="عرض تفاعلي">Interactive Demo</div>
+    <h2 class="section-title" data-en="CONTROL IN YOUR HANDS" data-tr="KONTROL ELİNİZDE" data-ar="التحكم بين يديك">CONTROL IN YOUR HANDS</h2>
+  </div>
+
+  <div class="lamp-scene" id="lampScene" onclick="toggleLamp()">
+    <div class="lamp-pole"></div>
+    <div class="lamp-arm"></div>
+    <div class="lamp-head">
+      <div class="lamp-bulb" id="lampBulb"></div>
+    </div>
+    <div class="lamp-cone" id="lampCone"></div>
+    <div class="lamp-ground" id="lampGround"></div>
+  </div>
+
+  <p class="lamp-hint" data-en="Click the lamp to toggle · Drag slider to adjust brightness" data-tr="Lambaya tıklayarak aç/kapat · Kaydırıcıyı sürükleyerek parlaklığı ayarla" data-ar="انقر على المصباح للتبديل · اسحب المنزلق لضبط السطوع">Click the lamp to toggle · Drag slider to adjust brightness</p>
+
+  <div class="brightness-control">
+    <div class="brightness-label" data-en="Brightness" data-tr="Parlaklık" data-ar="السطوع">Brightness</div>
+    <div class="brightness-value" id="brightnessValue">100%</div>
+    <input type="range" class="brightness-slider" id="brightnessSlider" min="0" max="100" value="100" oninput="setBrightness(this.value)"/>
+    <div class="lamp-status on" id="lampStatus" data-en-on="ON" data-en-off="OFF" data-tr-on="AÇIK" data-tr-off="KAPALI" data-ar-on="مضاء" data-ar-off="مطفأ">ON</div>
+  </div>
+</div>
+
 <!-- PRODUCT -->
 <section class="product" id="product">
   <div class="section-tag" data-en="What We Build" data-tr="Ne Üretiyoruz" data-ar="ماذا نبني">What We Build</div>
@@ -562,15 +738,15 @@
     <div class="product-card">
       <div class="card-icon">◈</div>
       <div class="card-title" data-en="Retrofit Module" data-tr="Retrofit Modül" data-ar="وحدة التركيب">Retrofit Module</div>
-      <p class="card-body" data-en="Plug-and-play device that fits existing NEMA sockets. No new wiring required. Installable in under 30 seconds per lamp." data-tr="Mevcut NEMA soketlerine uyum sağlayan tak-çalıştır cihaz. Yeni kablo gerektirmez. Lamba başına 30 saniyede kurulum." data-ar="جهاز يعمل بمجرد التوصيل ويناسب مقابس NEMA الحالية. لا يتطلب أسلاكاً جديدة. قابل للتركيب في أقل من 30 ثانية لكل مصباح.">
-        Plug-and-play device that fits existing NEMA sockets. No new wiring required. Installable in under 30 seconds per lamp.
+      <p class="card-body" data-en="Plug-and-play device that fits existing lamp sockets. No new wiring required. Installable in under 30 seconds per lamp." data-tr="Mevcut lamba soketlerine uyum sağlayan tak-çalıştır cihaz. Yeni kablo gerektirmez. Lamba başına 30 saniyede kurulum." data-ar="جهاز يعمل بمجرد التوصيل ويناسب مقابس المصابيح الحالية. لا يتطلب أسلاكاً جديدة. قابل للتركيب في أقل من 30 ثانية لكل مصباح.">
+        Plug-and-play device that fits existing lamp sockets. No new wiring required. Installable in under 30 seconds per lamp.
       </p>
     </div>
     <div class="product-card">
       <div class="card-icon">◉</div>
-      <div class="card-title" data-en="Mesh Network" data-tr="Mesh Ağ" data-ar="شبكة شبكية">Mesh Network</div>
-      <p class="card-body" data-en="Lamps communicate via LoRa mesh with 2km range. Self-healing network — if one node fails, the mesh reroutes automatically." data-tr="Lambalar 2 km menzilli LoRa mesh üzerinden haberleşir. Kendi kendini onaran ağ — bir düğüm başarısız olursa mesh otomatik olarak yeniden yönlendirir." data-ar="تتواصل المصابيح عبر شبكة LoRa بمدى 2 كم. شبكة قابلة للإصلاح الذاتي — إذا فشلت عقدة، تُعيد الشبكة التوجيه تلقائياً.">
-        Lamps communicate via LoRa mesh with 2km range. Self-healing network — if one node fails, the mesh reroutes automatically.
+      <div class="card-title" data-en="Self-Healing Mesh Network" data-tr="Kendini Onaran Mesh Ağ" data-ar="شبكة شبكية ذاتية الإصلاح">Self-Healing Mesh Network</div>
+      <p class="card-body" data-en="Lamps communicate wirelessly and form a self-healing network — if one node fails, the mesh reroutes automatically. No single point of failure." data-tr="Lambalar kablosuz haberleşerek kendini onaran bir ağ oluşturur — bir düğüm başarısız olursa mesh otomatik olarak yeniden yönlendirir." data-ar="تتواصل المصابيح لاسلكياً وتشكّل شبكة ذاتية الإصلاح — إذا فشلت عقدة، تُعيد الشبكة التوجيه تلقائياً.">
+        Lamps communicate wirelessly and form a self-healing network — if one node fails, the mesh reroutes automatically. No single point of failure.
       </p>
     </div>
     <div class="product-card">
@@ -583,8 +759,8 @@
     <div class="product-card">
       <div class="card-icon">⬡</div>
       <div class="card-title" data-en="Fault Detection" data-tr="Arıza Tespiti" data-ar="كشف الأعطال">Fault Detection</div>
-      <p class="card-body" data-en="Current sensors detect lamp failures instantly. Maintenance teams are notified before citizens even notice. Eliminate unnecessary field visits." data-tr="Akım sensörleri lamba arızalarını anında tespit eder. Bakım ekipleri vatandaşlar fark etmeden önce bilgilendirilir. Gereksiz saha ziyaretlerini ortadan kaldırın." data-ar="تكشف مستشعرات التيار عن أعطال المصابيح فوراً. يُخطر فريق الصيانة قبل أن يلاحظ المواطنون. تخلص من الزيارات الميدانية غير الضرورية.">
-        Current sensors detect lamp failures instantly. Maintenance teams are notified before citizens even notice. Eliminate unnecessary field visits.
+      <p class="card-body" data-en="Sensors detect lamp failures instantly. Maintenance teams are notified before citizens even notice. Eliminate unnecessary field visits." data-tr="Sensörler lamba arızalarını anında tespit eder. Bakım ekipleri vatandaşlar fark etmeden önce bilgilendirilir. Gereksiz saha ziyaretlerini ortadan kaldırın." data-ar="تكشف المستشعرات عن أعطال المصابيح فوراً. يُخطر فريق الصيانة قبل أن يلاحظ المواطنون. تخلص من الزيارات الميدانية غير الضرورية.">
+        Sensors detect lamp failures instantly. Maintenance teams are notified before citizens even notice. Eliminate unnecessary field visits.
       </p>
     </div>
     <div class="product-card">
@@ -596,9 +772,9 @@
     </div>
     <div class="product-card">
       <div class="card-icon">◉</div>
-      <div class="card-title" data-en="OTA Updates" data-tr="OTA Güncellemeler" data-ar="تحديثات OTA">OTA Updates</div>
-      <p class="card-body" data-en="Firmware updates pushed remotely to all devices. New features and security patches deployed without any on-site visits." data-tr="Firmware güncellemeleri tüm cihazlara uzaktan gönderilir. Yerinde ziyaret olmaksızın yeni özellikler ve güvenlik yamaları dağıtılır." data-ar="يتم دفع تحديثات البرامج الثابتة عن بُعد إلى جميع الأجهزة. نشر الميزات الجديدة وتصحيحات الأمان دون أي زيارات ميدانية.">
-        Firmware updates pushed remotely to all devices. New features and security patches deployed without any on-site visits.
+      <div class="card-title" data-en="Emergency Alert System" data-tr="Acil Durum Uyarı Sistemi" data-ar="نظام الإنذار الطارئ">Emergency Alert System</div>
+      <p class="card-body" data-en="Lamps can serve as city-wide alert nodes — visual signals, audio warnings and custom notifications pushed instantly across the entire network." data-tr="Lambalar şehir genelinde uyarı düğümleri olarak hizmet verebilir — görsel sinyaller, sesli uyarılar ve özel bildirimler tüm ağa anında iletilir." data-ar="يمكن للمصابيح أن تعمل كعقد تنبيه على مستوى المدينة — إشارات مرئية وتحذيرات صوتية وإشعارات مخصصة تُرسل فوراً عبر الشبكة بأكملها.">
+        Lamps can serve as city-wide alert nodes — visual signals, audio warnings and custom notifications pushed instantly across the entire network.
       </p>
     </div>
   </div>
@@ -614,23 +790,89 @@
     </p>
     <p style="font-size:14px; color:var(--orange); font-family:'Barlow Condensed',sans-serif; letter-spacing:2px;">info@wetrech.com</p>
   </div>
-  <div class="contact-form">
-    <input class="form-input" type="text" placeholder="Name / İsim / الاسم" />
-    <input class="form-input" type="email" placeholder="Email" />
-    <input class="form-input" type="text" placeholder="Organization / Kurum / المؤسسة" />
-    <textarea class="form-input" placeholder="Message / Mesaj / الرسالة"></textarea>
-    <button class="btn-primary" data-en="Send Message" data-tr="Gönder" data-ar="إرسال">Send Message</button>
-  </div>
+    <form class="contact-form" action="https://formspree.io/f/xvznoykn" method="POST">
+    <input class="form-input" type="text" name="name" placeholder="Name / İsim / الاسم" required />
+    <input class="form-input" type="email" name="email" placeholder="Email" required />
+    <input class="form-input" type="text" name="organization" placeholder="Organization / Kurum / المؤسسة" />
+    <textarea class="form-input" name="message" placeholder="Message / Mesaj / الرسالة" required></textarea>
+    <button type="submit" class="btn-primary" data-en="Send Message" data-tr="Gönder" data-ar="إرسال">Send Message</button>
+  </form>
+
+
+
+
+
+
+
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">WETRECH<span>.</span></div>
-  <div data-en="© 2025 Wetrech Technologies. All rights reserved." data-tr="© 2025 Wetrech Technologies. Tüm hakları saklıdır." data-ar="© 2025 Wetrech Technologies. جميع الحقوق محفوظة.">© 2025 Wetrech Technologies. All rights reserved.</div>
+  <div data-en="© 2026 Wetrech Technologies. All rights reserved." data-tr="© 2026 Wetrech Technologies. Tüm hakları saklıdır." data-ar="© 2026 Wetrech Technologies. جميع الحقوق محفوظة.">© 2026 Wetrech Technologies. All rights reserved.</div>
 </footer>
 
 <script>
-  function setLang(lang) {
+  let lampOn = false;
+  let brightness = 100;
+  let currentLang = 'en';
+
+  function toggleLamp() {
+    lampOn = !lampOn;
+    updateLamp();
+  }
+
+  function setBrightness(val) {
+    brightness = parseInt(val);
+    document.getElementById('brightnessValue').textContent = brightness + '%';
+    if (brightness === 0) {
+      lampOn = false;
+    } else {
+      lampOn = true;
+    }
+    updateLamp();
+  }
+
+  function updateLamp() {
+    const bulb = document.getElementById('lampBulb');
+    const cone = document.getElementById('lampCone');
+    const ground = document.getElementById('lampGround');
+    const status = document.getElementById('lampStatus');
+    const slider = document.getElementById('brightnessSlider');
+
+    if (lampOn && brightness > 0) {
+      const alpha = brightness / 100;
+      const warmth = Math.round(255 * alpha);
+      const dimAlpha = alpha * 0.08;
+
+      bulb.className = 'lamp-bulb on';
+      bulb.style.boxShadow = `0 0 ${30 * alpha}px ${10 * alpha}px rgba(255, 220, 80, ${0.6 * alpha}), 0 0 ${80 * alpha}px ${30 * alpha}px rgba(255, 180, 0, ${0.2 * alpha})`;
+      cone.className = 'lamp-cone on';
+      cone.style.borderTopColor = `rgba(255, 220, 80, ${dimAlpha})`;
+      ground.className = 'lamp-ground on';
+      ground.style.background = `radial-gradient(ellipse, rgba(255,200,50,${0.15 * alpha}) 0%, transparent 70%)`;
+
+      status.className = 'lamp-status on';
+      const onKey = 'data-' + currentLang + '-on';
+      status.textContent = status.getAttribute(onKey) || 'ON';
+      slider.value = brightness;
+      document.getElementById('brightnessValue').textContent = brightness + '%';
+    } else {
+      bulb.className = 'lamp-bulb';
+      bulb.style.boxShadow = '';
+      cone.className = 'lamp-cone';
+      cone.style.borderTopColor = 'transparent';
+      ground.className = 'lamp-ground';
+      ground.style.background = '';
+
+      status.className = 'lamp-status';
+      const offKey = 'data-' + currentLang + '-off';
+      status.textContent = status.getAttribute(offKey) || 'OFF';
+    }
+  }
+
+  function setLang(lang, btn) {
+    currentLang = lang;
     const dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.setAttribute('lang', lang);
     document.documentElement.setAttribute('dir', dir);
@@ -639,9 +881,20 @@
       el.textContent = el.getAttribute('data-' + lang);
     });
 
-    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // update status label
+    const status = document.getElementById('lampStatus');
+    if (lampOn && brightness > 0) {
+      status.textContent = status.getAttribute('data-' + lang + '-on') || 'ON';
+    } else {
+      status.textContent = status.getAttribute('data-' + lang + '-off') || 'OFF';
+    }
   }
+
+  // Init lamp on
+  toggleLamp();
 </script>
 
 </body>
