@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wetrech Technologies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500&family=Noto+Kufi+Arabic:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --orange: #FF5C00;
+      --orange-dim: #cc4900;
+      --orange-glow: rgba(255,92,0,0.18);
+      --black: #0A0A0A;
+      --dark: #111111;
+      --dark2: #181818;
+      --white: #F5F5F5;
+      --gray: #888;
+      --border: rgba(255,92,0,0.15);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ─── LANG SWITCHER ─── */
+    .lang-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 48px;
+      height: 56px;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo-nav {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      letter-spacing: 2px;
+      color: var(--white);
+    }
+
+    .logo-nav span { color: var(--orange); }
+
+    .lang-btns { display: flex; gap: 6px; }
+
+    .lang-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--gray);
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      padding: 5px 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: uppercase;
+    }
+
+    .lang-btn:hover, .lang-btn.active {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: #fff;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(255,92,0,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--orange), transparent);
+    }
+
+    .hero-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      color: var(--orange);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.2s;
+    }
+
+    .hero-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(56px, 10vw, 130px);
+      line-height: 0.92;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+      max-width: 900px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.4s;
+    }
+
+    .hero-title .accent { color: var(--orange); }
+
+    .hero-title .outline {
+      -webkit-text-stroke: 2px var(--white);
+      color: transparent;
+    }
+
+    .hero-divider {
+      width: 80px;
+      height: 3px;
+      background: var(--orange);
+      margin: 36px 0;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.6s;
+    }
+
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 20px);
+      font-weight: 300;
+      color: rgba(245,245,245,0.7);
+      max-width: 560px;
+      line-height: 1.6;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.8s;
+    }
+
+    .hero-cta {
+      margin-top: 48px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 1s;
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s, transform 0.2s;
+      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    }
+
+    .btn-primary:hover { background: var(--orange-dim); transform: translateY(-2px); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border: 1px solid rgba(245,245,245,0.3);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-secondary:hover { border-color: var(--orange); color: var(--orange); }
+
+    /* ─── STATS ─── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stat {
+      padding: 48px;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+
+    .stat:last-child { border-right: none; }
+
+    .stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 56px;
+      color: var(--orange);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--gray);
+      letter-spacing: 1px;
+      margin-top: 8px;
+    }
+
+    /* ─── SECTIONS ─── */
+    section {
+      padding: 100px 48px;
+      position: relative;
+    }
+
+    .section-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      color: var(--orange);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: clamp(36px, 5vw, 64px);
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 32px;
+    }
+
+    .section-body {
+      font-size: 16px;
+      line-height: 1.8;
+      color: rgba(245,245,245,0.7);
+      max-width: 640px;
+    }
+
+    /* ─── ABOUT ─── */
+    .about {
+      background: var(--dark);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .circuit {
+      width: 300px;
+      height: 300px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      position: relative;
+      animation: spin 20s linear infinite;
+    }
+
+    .circuit::before {
+      content: '';
+      position: absolute;
+      inset: 20px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      animation: spin 10s linear infinite reverse;
+    }
+
+    .circuit::after {
+      content: '';
+      position: absolute;
+      inset: 60px;
+      border: 2px solid var(--orange);
+      border-radius: 50%;
+      opacity: 0.4;
+    }
+
+    .circuit-dot {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: var(--orange);
+      border-radius: 50%;
+      top: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 20px var(--orange);
+    }
+
+    .circuit-center {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background: var(--orange);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 10px;
+      letter-spacing: 1px;
+      box-shadow: 0 0 40px rgba(255,92,0,0.4);
+    }
+
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    /* ─── PRODUCT ─── */
+    .product { background: var(--black); }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      margin-top: 60px;
+      border: 1px solid var(--border);
+    }
+
+    .product-card {
+      background: var(--dark);
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+
+    .product-card:hover { background: var(--dark2); }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--orange);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .product-card:hover::before { transform: scaleX(1); }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border: 1px solid var(--orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      color: var(--orange);
+      font-size: 22px;
+    }
+
+    .card-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .card-body {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--gray);
+    }
+
+    /* ─── CONTACT ─── */
+    .contact {
+      background: var(--dark);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-input {
+      background: var(--black);
+      border: 1px solid var(--border);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      padding: 16px 20px;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    .form-input:focus { border-color: var(--orange); }
+    .form-input::placeholder { color: var(--gray); }
+
+    textarea.form-input { resize: none; height: 120px; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 32px 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    .footer-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 16px;
+      letter-spacing: 2px;
+      color: var(--white);
+    }
+
+    .footer-logo span { color: var(--orange); }
+
+    /* ─── ARABIC ─── */
+    [dir="rtl"] {
+      font-family: 'Noto Kufi Arabic', sans-serif;
+    }
+
+    [dir="rtl"] .hero-title,
+    [dir="rtl"] .section-title,
+    [dir="rtl"] .card-title,
+    [dir="rtl"] .logo-nav,
+    [dir="rtl"] .footer-logo {
+      font-family: 'Noto Kufi Arabic', sans-serif;
+      letter-spacing: 0;
+    }
+
+    [dir="rtl"] .stat { border-right: none; border-left: 1px solid var(--border); }
+    [dir="rtl"] .stat:last-child { border-left: none; }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .lang-bar { padding: 0 24px; }
+      .hero { padding: 100px 24px 60px; }
+      section { padding: 60px 24px; }
+      .stats { grid-template-columns: 1fr; }
+      .stat { border-right: none; border-bottom: 1px solid var(--border); }
+      .about, .contact { grid-template-columns: 1fr; gap: 40px; }
+      .about-visual { height: 250px; }
+      .product-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="lang-bar">
+  <div class="logo-nav">WETRECH<span>.</span></div>
+  <div class="lang-btns">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('tr')">TR</button>
+    <button class="lang-btn" onclick="setLang('ar')">AR</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag" data-en="Smart City Infrastructure" data-tr="Akıllı Şehir Altyapısı" data-ar="البنية التحتية للمدن الذكية">Smart City Infrastructure</div>
+  <h1 class="hero-title">
+    <span class="accent" data-en="CONNECTING" data-tr="ŞEHİRLERİ" data-ar="نربط">CONNECTING</span><br>
+    <span class="outline" data-en="CITIES" data-tr="BİRLEŞTİRİYORUZ" data-ar="المدن">CITIES</span><br>
+    <span data-en="POWERING THE" data-tr="GELECEĞİ" data-ar="نُشغّل">POWERING THE</span><br>
+    <span class="accent" data-en="FUTURE" data-tr="GÜÇLENDİRİYORUZ" data-ar="المستقبل">FUTURE</span>
+  </h1>
+  <div class="hero-divider"></div>
+  <p class="hero-sub" data-en="Wetrech Technologies develops intelligent infrastructure systems that connect, monitor and optimize urban environments — starting with smart street lighting." data-tr="Wetrech Technologies, kentsel ortamları birbirine bağlayan, izleyen ve optimize eden akıllı altyapı sistemleri geliştiriyor — akıllı sokak aydınlatmasından başlayarak." data-ar="تطوّر Wetrech Technologies أنظمة بنية تحتية ذكية تربط البيئات الحضرية وتراقبها وتحسّنها — بدءاً من إضاءة الشوارع الذكية.">
+    Wetrech Technologies develops intelligent infrastructure systems that connect, monitor and optimize urban environments — starting with smart street lighting.
+  </p>
+  <div class="hero-cta">
+    <a href="#contact" class="btn-primary" data-en="Get in Touch" data-tr="İletişime Geç" data-ar="تواصل معنا">Get in Touch</a>
+    <a href="#product" class="btn-secondary" data-en="Our Product" data-tr="Ürünümüz" data-ar="منتجنا">Our Product</a>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">40%</div>
+    <div class="stat-label" data-en="Energy Savings" data-tr="Enerji Tasarrufu" data-ar="توفير في الطاقة">Energy Savings</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">24/7</div>
+    <div class="stat-label" data-en="Real-time Monitoring" data-tr="Gerçek Zamanlı İzleme" data-ar="مراقبة فورية">Real-time Monitoring</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">2KM</div>
+    <div class="stat-label" data-en="Wireless Range" data-tr="Kablosuz Menzil" data-ar="نطاق لاسلكي">Wireless Range</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-content">
+    <div class="section-tag" data-en="Who We Are" data-tr="Biz Kimiz" data-ar="من نحن">Who We Are</div>
+    <h2 class="section-title" data-en="BUILT FOR SMART CITIES" data-tr="AKILLI ŞEHİRLER İÇİN" data-ar="بُنيت للمدن الذكية">BUILT FOR SMART CITIES</h2>
+    <p class="section-body" data-en="Wetrech Technologies is an Abu Dhabi based deep-tech startup building the next generation of urban infrastructure. Our retrofit IoT modules integrate seamlessly into existing street lighting networks — no new cabling, no disruption, just intelligence." data-tr="Wetrech Technologies, yeni nesil kentsel altyapıyı inşa eden, Abu Dhabi merkezli bir derin teknoloji girişimidir. Retrofit IoT modüllerimiz mevcut sokak aydınlatma ağlarına sorunsuzca entegre olur — yeni kablo yok, kesinti yok, sadece zeka." data-ar="Wetrech Technologies شركة ناشئة في مجال التكنولوجيا العميقة مقرها أبوظبي، تبني الجيل القادم من البنية التحتية الحضرية. تتكامل وحداتنا الذكية القابلة للتركيب بسلاسة مع شبكات الإضاءة الحالية — دون أسلاك جديدة، دون تعطيل، فقط ذكاء.">
+      Wetrech Technologies is an Abu Dhabi based deep-tech startup building the next generation of urban infrastructure. Our retrofit IoT modules integrate seamlessly into existing street lighting networks — no new cabling, no disruption, just intelligence.
+    </p>
+  </div>
+  <div class="about-visual">
+    <div class="circuit">
+      <div class="circuit-dot"></div>
+      <div class="circuit-center">IoT</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT -->
+<section class="product" id="product">
+  <div class="section-tag" data-en="What We Build" data-tr="Ne Üretiyoruz" data-ar="ماذا نبني">What We Build</div>
+  <h2 class="section-title" data-en="SMART STREET LIGHTING SYSTEM" data-tr="AKILLI SOKAK AYDINLATMA SİSTEMİ" data-ar="نظام إضاءة الشوارع الذكي">SMART STREET LIGHTING SYSTEM</h2>
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="card-icon">◈</div>
+      <div class="card-title" data-en="Retrofit Module" data-tr="Retrofit Modül" data-ar="وحدة التركيب">Retrofit Module</div>
+      <p class="card-body" data-en="Plug-and-play device that fits existing NEMA sockets. No new wiring required. Installable in under 30 seconds per lamp." data-tr="Mevcut NEMA soketlerine uyum sağlayan tak-çalıştır cihaz. Yeni kablo gerektirmez. Lamba başına 30 saniyede kurulum." data-ar="جهاز يعمل بمجرد التوصيل ويناسب مقابس NEMA الحالية. لا يتطلب أسلاكاً جديدة. قابل للتركيب في أقل من 30 ثانية لكل مصباح.">
+        Plug-and-play device that fits existing NEMA sockets. No new wiring required. Installable in under 30 seconds per lamp.
+      </p>
+    </div>
+    <div class="product-card">
+      <div class="card-icon">◉</div>
+      <div class="card-title" data-en="Mesh Network" data-tr="Mesh Ağ" data-ar="شبكة شبكية">Mesh Network</div>
+      <p class="card-body" data-en="Lamps communicate via LoRa mesh with 2km range. Self-healing network — if one node fails, the mesh reroutes automatically." data-tr="Lambalar 2 km menzilli LoRa mesh üzerinden haberleşir. Kendi kendini onaran ağ — bir düğüm başarısız olursa mesh otomatik olarak yeniden yönlendirir." data-ar="تتواصل المصابيح عبر شبكة LoRa بمدى 2 كم. شبكة قابلة للإصلاح الذاتي — إذا فشلت عقدة، تُعيد الشبكة التوجيه تلقائياً.">
+        Lamps communicate via LoRa mesh with 2km range. Self-healing network — if one node fails, the mesh reroutes automatically.
+      </p>
+    </div>
+    <div class="product-card">
+      <div class="card-icon">◐</div>
+      <div class="card-title" data-en="Central Dashboard" data-tr="Merkezi Panel" data-ar="لوحة تحكم مركزية">Central Dashboard</div>
+      <p class="card-body" data-en="Real-time fault detection, remote dimming control, energy analytics and scheduling — all from one web platform accessible by municipalities." data-tr="Gerçek zamanlı arıza tespiti, uzaktan dim kontrolü, enerji analitiği ve zamanlama — hepsi belediyelerin erişebildiği tek bir web platformundan." data-ar="كشف الأعطال في الوقت الفعلي، والتحكم عن بُعد في التعتيم، وتحليلات الطاقة والجدولة — كل ذلك من منصة ويب واحدة يمكن للبلديات الوصول إليها.">
+        Real-time fault detection, remote dimming control, energy analytics and scheduling — all from one web platform accessible by municipalities.
+      </p>
+    </div>
+    <div class="product-card">
+      <div class="card-icon">⬡</div>
+      <div class="card-title" data-en="Fault Detection" data-tr="Arıza Tespiti" data-ar="كشف الأعطال">Fault Detection</div>
+      <p class="card-body" data-en="Current sensors detect lamp failures instantly. Maintenance teams are notified before citizens even notice. Eliminate unnecessary field visits." data-tr="Akım sensörleri lamba arızalarını anında tespit eder. Bakım ekipleri vatandaşlar fark etmeden önce bilgilendirilir. Gereksiz saha ziyaretlerini ortadan kaldırın." data-ar="تكشف مستشعرات التيار عن أعطال المصابيح فوراً. يُخطر فريق الصيانة قبل أن يلاحظ المواطنون. تخلص من الزيارات الميدانية غير الضرورية.">
+        Current sensors detect lamp failures instantly. Maintenance teams are notified before citizens even notice. Eliminate unnecessary field visits.
+      </p>
+    </div>
+    <div class="product-card">
+      <div class="card-icon">◈</div>
+      <div class="card-title" data-en="Smart Dimming" data-tr="Akıllı Dim" data-ar="التعتيم الذكي">Smart Dimming</div>
+      <p class="card-body" data-en="Automatic brightness scheduling based on time, traffic and ambient light. Up to 40% energy reduction with zero impact on public safety." data-tr="Zaman, trafik ve ortam ışığına göre otomatik parlaklık planlaması. Kamu güvenliği üzerinde sıfır etki ile %40'a kadar enerji azaltımı." data-ar="جدولة تلقائية للسطوع بناءً على الوقت والمرور والضوء المحيط. خفض الطاقة بنسبة 40٪ دون أي تأثير على السلامة العامة.">
+        Automatic brightness scheduling based on time, traffic and ambient light. Up to 40% energy reduction with zero impact on public safety.
+      </p>
+    </div>
+    <div class="product-card">
+      <div class="card-icon">◉</div>
+      <div class="card-title" data-en="OTA Updates" data-tr="OTA Güncellemeler" data-ar="تحديثات OTA">OTA Updates</div>
+      <p class="card-body" data-en="Firmware updates pushed remotely to all devices. New features and security patches deployed without any on-site visits." data-tr="Firmware güncellemeleri tüm cihazlara uzaktan gönderilir. Yerinde ziyaret olmaksızın yeni özellikler ve güvenlik yamaları dağıtılır." data-ar="يتم دفع تحديثات البرامج الثابتة عن بُعد إلى جميع الأجهزة. نشر الميزات الجديدة وتصحيحات الأمان دون أي زيارات ميدانية.">
+        Firmware updates pushed remotely to all devices. New features and security patches deployed without any on-site visits.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div>
+    <div class="section-tag" data-en="Get in Touch" data-tr="İletişim" data-ar="تواصل معنا">Get in Touch</div>
+    <h2 class="section-title" data-en="LET'S BUILD SMARTER CITIES TOGETHER" data-tr="BİRLİKTE DAHA AKILLI ŞEHİRLER İNŞA EDELİM" data-ar="لنبنِ مدناً أذكى معاً">LET'S BUILD SMARTER CITIES TOGETHER</h2>
+    <p class="section-body" style="margin-bottom:32px" data-en="Whether you're a municipality, an investor, or a potential partner — we'd love to hear from you." data-tr="İster belediye, ister yatırımcı, ister potansiyel ortak olun — sizinle tanışmayı çok isteriz." data-ar="سواء كنت بلدية أو مستثمراً أو شريكاً محتملاً — يسعدنا التواصل معك.">
+      Whether you're a municipality, an investor, or a potential partner — we'd love to hear from you.
+    </p>
+    <p style="font-size:14px; color:var(--orange); font-family:'Barlow Condensed',sans-serif; letter-spacing:2px;">info@wetrech.com</p>
+  </div>
+  <div class="contact-form">
+    <input class="form-input" type="text" placeholder="Name / İsim / الاسم" />
+    <input class="form-input" type="email" placeholder="Email" />
+    <input class="form-input" type="text" placeholder="Organization / Kurum / المؤسسة" />
+    <textarea class="form-input" placeholder="Message / Mesaj / الرسالة"></textarea>
+    <button class="btn-primary" data-en="Send Message" data-tr="Gönder" data-ar="إرسال">Send Message</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">WETRECH<span>.</span></div>
+  <div data-en="© 2025 Wetrech Technologies. All rights reserved." data-tr="© 2025 Wetrech Technologies. Tüm hakları saklıdır." data-ar="© 2025 Wetrech Technologies. جميع الحقوق محفوظة.">© 2025 Wetrech Technologies. All rights reserved.</div>
+</footer>
+
+<script>
+  function setLang(lang) {
+    const dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.setAttribute('lang', lang);
+    document.documentElement.setAttribute('dir', dir);
+
+    document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+      el.textContent = el.getAttribute('data-' + lang);
+    });
+
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
