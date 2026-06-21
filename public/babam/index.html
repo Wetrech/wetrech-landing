@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Babalar Günün Kutlu Olsun</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,400&family=Mulish:wght@300;400;600&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#191210;          /* sıcak koyu - karanlık oda */
+    --ink-soft:#2a201b;
+    --paper:#f6ecdc;        /* eski fotoğraf kâğıdı */
+    --paper-dim:#e7d8c0;
+    --amber:#e3a24e;        /* bal / altın saat */
+    --amber-deep:#c5803a;
+    --glow:#ffd28a;
+    --clay:#c8745c;         /* kil / gül */
+    --line:rgba(246,236,220,.14);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  html{scroll-behavior:smooth}
+
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:"Mulish",system-ui,sans-serif;
+    font-weight:300;
+    line-height:1.7;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* sıcak ışık sızması - imza atmosfer */
+  .lightleak{
+    position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(60% 50% at 80% 0%, rgba(255,210,138,.16), transparent 60%),
+      radial-gradient(50% 60% at 15% 100%, rgba(200,116,92,.12), transparent 60%);
+    animation:breathe 9s ease-in-out infinite;
+  }
+  @keyframes breathe{0%,100%{opacity:.75}50%{opacity:1}}
+
+  .wrap{position:relative;z-index:1;max-width:920px;margin:0 auto;padding:0 24px}
+
+  /* ---------- AÇILIŞ PERDESİ (müziği başlatan dokunuş) ---------- */
+  #curtain{
+    position:fixed;inset:0;z-index:50;
+    background:radial-gradient(120% 120% at 50% 30%, #241a14 0%, #120c0a 70%);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:24px;gap:28px;
+    transition:opacity .9s ease, visibility .9s ease;
+  }
+  #curtain.gone{opacity:0;visibility:hidden}
+  .curtain-eyebrow{
+    font-family:"Caveat",cursive;font-size:1.6rem;color:var(--amber);
+    letter-spacing:.5px;
+  }
+  .curtain-title{
+    font-family:"Fraunces",serif;font-weight:400;font-size:clamp(2.1rem,7vw,3.6rem);
+    line-height:1.1;max-width:14ch;color:var(--paper);
+  }
+  .enter-btn{
+    margin-top:8px;cursor:pointer;border:none;
+    background:linear-gradient(180deg,var(--amber),var(--amber-deep));
+    color:#231505;font-family:"Mulish";font-weight:600;font-size:1rem;
+    padding:15px 34px;border-radius:999px;letter-spacing:.3px;
+    box-shadow:0 12px 40px rgba(227,162,78,.35);
+    transition:transform .25s ease, box-shadow .25s ease;
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .enter-btn:hover{transform:translateY(-2px);box-shadow:0 18px 50px rgba(227,162,78,.5)}
+  .enter-hint{font-size:.82rem;color:rgba(246,236,220,.45);letter-spacing:.4px}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:120px 0 60px;text-align:center}
+  .date-tag{
+    font-size:.78rem;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--amber);font-weight:600;margin-bottom:26px;
+  }
+  .hero h1{
+    font-family:"Fraunces",serif;font-weight:300;font-style:normal;
+    font-size:clamp(2.6rem,9vw,5rem);line-height:1.04;letter-spacing:-.5px;
+  }
+  .hero h1 em{font-style:italic;color:var(--glow)}
+  .hero .sub{
+    margin:26px auto 0;max-width:34ch;color:var(--paper-dim);
+    font-size:1.08rem;
+  }
+
+  /* ---------- POLAROID DAĞINIK FOTOĞRAFLAR ---------- */
+  .gallery{
+    padding:40px 0 70px;
+    display:flex;flex-wrap:wrap;justify-content:center;
+    gap:8px 14px;perspective:1200px;
+  }
+  .polaroid{
+    background:#fbf4e8;padding:12px 12px 18px;border-radius:3px;
+    box-shadow:0 18px 40px rgba(0,0,0,.45);
+    width:min(220px,42vw);cursor:zoom-in;
+    transition:transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s ease;
+    will-change:transform;
+  }
+  .polaroid:nth-child(5n+1){transform:rotate(-5deg) translateY(8px)}
+  .polaroid:nth-child(5n+2){transform:rotate(3deg)}
+  .polaroid:nth-child(5n+3){transform:rotate(-2deg) translateY(14px)}
+  .polaroid:nth-child(5n+4){transform:rotate(4deg) translateY(4px)}
+  .polaroid:nth-child(5n+5){transform:rotate(-3.5deg)}
+  .polaroid:hover{transform:rotate(0deg) translateY(-10px) scale(1.04);box-shadow:0 30px 60px rgba(0,0,0,.55);z-index:5}
+  .polaroid .frame{
+    aspect-ratio:4/5;background:var(--paper-dim);border-radius:2px;
+    overflow:hidden;display:flex;align-items:center;justify-content:center;
+    position:relative;
+  }
+  .polaroid .frame img{width:100%;height:100%;object-fit:cover;display:block}
+  /* fotoğraf eklenene kadar görünen şık yer tutucu */
+  .placeholder{
+    color:#8a7a63;text-align:center;font-size:.8rem;padding:10px;
+    display:flex;flex-direction:column;gap:8px;align-items:center;
+  }
+  .placeholder svg{width:30px;height:30px;opacity:.6}
+
+  /* ---------- BÜYÜTÜLMÜŞ FOTOĞRAF (lightbox) ---------- */
+  #lightbox{
+    position:fixed;inset:0;z-index:70;display:none;
+    align-items:center;justify-content:center;padding:20px;cursor:zoom-out;
+    background:rgba(10,7,5,.92);backdrop-filter:blur(4px);
+  }
+  #lightbox.open{display:flex;animation:lbfade .25s ease}
+  @keyframes lbfade{from{opacity:0}to{opacity:1}}
+  #lightbox img{
+    max-width:94vw;max-height:88vh;border-radius:4px;
+    box-shadow:0 30px 80px rgba(0,0,0,.7);
+    background:#fbf4e8;padding:10px;
+  }
+  #lightbox .lb-close{
+    position:absolute;top:18px;right:22px;color:var(--paper);
+    font-size:2.2rem;line-height:1;background:none;border:none;cursor:pointer;opacity:.8;
+  }
+  #lightbox .lb-close:hover{opacity:1}
+
+  /* ---------- MEKTUP ---------- */
+  .letter{
+    padding:30px 0 60px;max-width:620px;margin:0 auto;text-align:center;
+  }
+  .letter .rule{width:46px;height:2px;background:var(--amber);margin:0 auto 34px;border-radius:2px}
+  .letter p{font-size:1.18rem;color:var(--paper);margin-bottom:22px;font-weight:300}
+  .letter p .hi{color:var(--glow);font-style:italic;font-family:"Fraunces",serif}
+  .signature{
+    font-family:"Caveat",cursive;font-size:2rem;color:var(--amber);
+    margin-top:14px;line-height:1;
+  }
+
+  /* ---------- HEDİYE BUTONU ---------- */
+  .gift{padding:20px 0 130px;text-align:center}
+  .gift-line{color:var(--paper-dim);margin-bottom:24px;font-size:1.02rem}
+  .gift-btn{
+    cursor:pointer;border:none;position:relative;
+    background:linear-gradient(180deg,var(--amber),var(--amber-deep));
+    color:#231505;font-family:"Mulish";font-weight:600;font-size:1.08rem;
+    padding:18px 40px;border-radius:999px;letter-spacing:.2px;
+    box-shadow:0 14px 44px rgba(227,162,78,.4);
+    transition:transform .25s ease, box-shadow .25s ease;
+    display:inline-flex;align-items:center;gap:12px;
+  }
+  .gift-btn:hover{transform:translateY(-3px);box-shadow:0 22px 60px rgba(227,162,78,.55)}
+  .gift-btn svg{width:22px;height:22px}
+  .gift-btn:disabled{opacity:.7;cursor:default}
+  #giftDone{animation:pop .5s cubic-bezier(.2,1.1,.3,1)}
+  .done-heart{font-size:2.6rem;margin-bottom:6px}
+  .done-title{font-family:"Fraunces",serif;font-weight:400;font-size:1.7rem;color:var(--glow);margin-bottom:8px}
+  .done-sub{color:var(--paper-dim);font-size:1.05rem}
+
+  /* ---------- MÜZİK BUTONU ---------- */
+  #music{
+    position:fixed;right:20px;bottom:20px;z-index:40;
+    width:54px;height:54px;border-radius:50%;cursor:pointer;border:1px solid var(--line);
+    background:rgba(40,30,24,.85);backdrop-filter:blur(8px);
+    color:var(--amber);display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 24px rgba(0,0,0,.4);transition:transform .2s ease,color .2s ease;
+  }
+  #music:hover{transform:scale(1.08)}
+  #music svg{width:24px;height:24px}
+  #music .bars span{display:inline-block;width:3px;margin:0 1px;background:currentColor;border-radius:2px;height:14px;animation:eq 1s ease-in-out infinite}
+  #music .bars span:nth-child(2){animation-delay:.2s}
+  #music .bars span:nth-child(3){animation-delay:.4s}
+  #music.paused .bars span{animation-play-state:paused;height:8px}
+  @keyframes eq{0%,100%{height:7px}50%{height:18px}}
+
+  @keyframes pop{from{transform:scale(.92) translateY(10px);opacity:0}to{transform:none;opacity:1}}
+
+  /* uçuşan kalpler */
+  .floaty{position:fixed;bottom:-30px;z-index:55;pointer-events:none;font-size:1.4rem;animation:rise 3.2s ease-in forwards}
+  @keyframes rise{to{transform:translateY(-110vh) rotate(40deg);opacity:0}}
+
+  footer{text-align:center;padding:30px 0 40px;color:rgba(246,236,220,.3);font-size:.8rem}
+  footer a{color:var(--amber);text-decoration:none}
+
+  /* erişilebilirlik */
+  :focus-visible{outline:2px solid var(--glow);outline-offset:3px;border-radius:6px}
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto}
+  }
+  @media (max-width:560px){
+    .wrap{padding:0 18px}
+    .hero{padding:88px 0 34px}
+    .hero .sub{font-size:1rem}
+    .gallery{gap:9px 9px;padding:30px 0 56px}
+    .polaroid{width:44vw;padding:9px 9px 14px}
+    .letter{padding:24px 0 50px}
+    .letter p{font-size:1.06rem}
+    .gift{padding:14px 0 110px}
+    .gift-btn{font-size:.98rem;padding:16px 24px;max-width:100%}
+    .enter-btn{padding:14px 28px}
+    .curtain-title{font-size:clamp(1.9rem,8vw,2.6rem)}
+    #music{width:48px;height:48px;right:16px;bottom:16px}
+    .done-title{font-size:1.45rem}
+  }
+  @media (max-width:360px){
+    .gift-btn{font-size:.92rem;padding:15px 18px;gap:9px}
+    .gift-btn svg{width:18px;height:18px}
+  }
+</style>
+</head>
+<body>
+
+<div class="lightleak"></div>
+
+<!-- ====== AÇILIŞ PERDESİ ====== -->
+<div id="curtain">
+  <div class="curtain-eyebrow">21 Haziran 2026</div>
+  <h1 class="curtain-title">Babalar Günün Kutlu Olsun</h1>
+  <button class="enter-btn" id="enterBtn">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    Başla
+  </button>
+  <div class="enter-hint">Müziği başlatmak için dokun</div>
+</div>
+
+<!-- ====== HERO ====== -->
+<section class="hero wrap">
+  <div class="date-tag">İyi ki Varsın</div>
+  <h1>Arkamdaki <em>dağ</em>, babamla.</h1>
+  <p class="sub">Bana öğrettiğin her şey için, bugün küçük bir teşekkür.</p>
+</section>
+
+<!-- ====== FOTOĞRAFLAR (kendi fotoğraflarınla değiştir) ====== -->
+<section class="gallery wrap">
+  <!-- 13 fotoğraf slotu. Her birinde <div class="frame"> içindeki
+       placeholder'ı silip <img src="foto1.jpg" alt="Babamla"> koy.
+       Fotoğrafa tıklayınca büyür. -->
+  <div class="polaroid">
+    <div class="frame">
+      <!-- Fotoğraf eklemek için bu placeholder div'ini silip yerine: <img src="foto1.jpg" alt="Babamla"> koy -->
+      <div class="placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>
+        Fotoğraf 1
+      </div>
+    </div>
+  </div>
+  <div class="polaroid">
+    <div class="frame">
+      <div class="placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>
+        Fotoğraf 2
+      </div>
+    </div>
+  </div>
+  <div class="polaroid">
+    <div class="frame">
+      <div class="placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>
+        Fotoğraf 3
+      </div>
+    </div>
+  </div>
+  <div class="polaroid">
+    <div class="frame">
+      <div class="placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>
+        Fotoğraf 4
+      </div>
+    </div>
+  </div>
+  <div class="polaroid">
+    <div class="frame">
+      <div class="placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>
+        Fotoğraf 5
+      </div>
+    </div>
+  </div>
+  <div class="polaroid">
+    <div class="frame">
+      <div class="placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>
+        Fotoğraf 6
+      </div>
+    </div>
+  </div>
+  <div class="polaroid">
+    <div class="frame">
+      <div class="placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>
+        Fotoğraf 7
+      </div>
+    </div>
+  </div>
+  <div class="polaroid">
+    <div class="frame">
+      <div class="placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>
+        Fotoğraf 8
+      </div>
+    </div>
+  </div>
+  <div class="polaroid">
+    <div class="frame">
+      <div class="placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>
+        Fotoğraf 9
+      </div>
+    </div>
+  </div>
+  <div class="polaroid">
+    <div class="frame">
+      <div class="placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>
+        Fotoğraf 10
+      </div>
+    </div>
+  </div>
+  <div class="polaroid">
+    <div class="frame">
+      <div class="placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>
+        Fotoğraf 11
+      </div>
+    </div>
+  </div>
+  <div class="polaroid">
+    <div class="frame">
+      <div class="placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>
+        Fotoğraf 12
+      </div>
+    </div>
+  </div>
+  <div class="polaroid">
+    <div class="frame">
+      <div class="placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>
+        Fotoğraf 13
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== MEKTUP ====== -->
+<section class="letter wrap">
+  <div class="rule"></div>
+  <p>Sabrın, emeğin ve hiç bitmeyen sevgin için <span class="hi">teşekkür ederim</span>.</p>
+  <p>Şimdilik uzaktayız ama olsun. Yakında yine yan yanayız inşallah.</p>
+  <div class="signature">— Oğlun, Furkan</div>
+</section>
+
+<!-- ====== HEDİYE BUTONU ====== -->
+<section class="gift wrap">
+  <div id="giftDefault">
+    <div class="gift-line">Sana hazırladığım bir şey var, baba.</div>
+    <button class="gift-btn" id="giftBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20"/><path d="M16 14h2"/></svg>
+      Sürprizini açmak için dokun
+    </button>
+  </div>
+  <div id="giftDone" style="display:none">
+    <div class="done-heart">💛</div>
+    <h3 class="done-title">Sürprizin yolda 💛</h3>
+    <p class="done-sub">Birazdan hesabına bir göz at 😊</p>
+  </div>
+</section>
+
+<footer>
+  Sevgiyle hazırlandı · <a href="https://wetrech.com">wetrech.com</a>
+</footer>
+
+<!-- ====== BÜYÜTÜLMÜŞ FOTOĞRAF ====== -->
+<div id="lightbox" role="dialog" aria-modal="true">
+  <button class="lb-close" aria-label="Kapat">&times;</button>
+  <img id="lbImg" src="" alt="">
+</div>
+
+<!-- ====== MÜZİK ====== -->
+<!-- Müzik için: kendi seçtiğin şarkıyı 'baba-sarki.mp3' adıyla bu dosyanın yanına koy. -->
+<audio id="audio" loop>
+  <source src="baba-sarki.mp3" type="audio/mpeg">
+</audio>
+<button id="music" class="paused" aria-label="Müziği aç/kapat">
+  <span class="bars"><span></span><span></span><span></span></span>
+</button>
+
+<script>
+  /* =================================================================
+     ⚙️  AYARLAR — sadece burayı kendine göre düzenle
+     ================================================================= */
+  const CONFIG = {
+    // --- ASIL YÖNTEM: CallMeBot ile WhatsApp bildirimi ---
+    // Baban butona basınca SENİN telefonuna otomatik WhatsApp düşer.
+    callmebotTelefon: "971507648727",   // SENİN numaran (ülke koduyla)
+    callmebotApiKey:  "3277844",         // CallMeBot'tan aldığın anahtar
+    bildirimMetni:    "Baban butona bastı 💛 Hesabına para gönder!",
+
+    // --- YEDEK YÖNTEM: kurulum istemeyen WhatsApp linki ---
+    // callmebotApiKey boşsa bu kullanılır: butona basınca babanın
+    // WhatsApp'ı senin numarana hazır mesajla açılır, "gönder"e basar.
+    whatsappYedekNumara: "971507648727" // SENİN numaran
+  };
+  /* ================================================================= */
+
+  // --- bildirim gönder ---
+  function babayaHaberVer(){
+    if (CONFIG.callmebotApiKey){
+      // CallMeBot: sessiz GET (image-beacon ile CORS'a takılmadan)
+      const url = "https://api.callmebot.com/whatsapp.php"
+        + "?phone="  + encodeURIComponent(CONFIG.callmebotTelefon)
+        + "&text="   + encodeURIComponent(CONFIG.bildirimMetni)
+        + "&apikey=" + encodeURIComponent(CONFIG.callmebotApiKey);
+      new Image().src = url;
+      try { fetch(url, {mode:'no-cors'}); } catch(e){}
+    } else {
+      // Yedek: babanın WhatsApp'ını hazır mesajla aç
+      const num = CONFIG.whatsappYedekNumara.replace(/[^\d]/g,'');
+      window.open("https://wa.me/" + num + "?text=" + encodeURIComponent(CONFIG.bildirimMetni), "_blank");
+    }
+  }
+
+  // --- müzik ---
+  const audio = document.getElementById('audio');
+  const musicBtn = document.getElementById('music');
+  let playing = false;
+  function setMusic(on){
+    if (on){ audio.play().then(()=>{playing=true;musicBtn.classList.remove('paused');}).catch(()=>{}); }
+    else { audio.pause(); playing=false; musicBtn.classList.add('paused'); }
+  }
+  musicBtn.addEventListener('click', ()=> setMusic(!playing));
+
+  // --- açılış perdesi: tıklayınca kapanır + müzik başlar ---
+  const curtain = document.getElementById('curtain');
+  document.getElementById('enterBtn').addEventListener('click', ()=>{
+    curtain.classList.add('gone');
+    setMusic(true);
+    setTimeout(()=>curtain.style.display='none', 900);
+  });
+
+  // --- "hesabını kontrol et" butonu ---
+  const giftBtn = document.getElementById('giftBtn');
+  let pressed = false;
+  giftBtn.addEventListener('click', ()=>{
+    if (pressed) return;       // tek sefer: yanlışlıkla spam göndermesin
+    pressed = true;
+    babayaHaberVer();
+    rainHearts();
+    document.getElementById('giftDefault').style.display = 'none';
+    document.getElementById('giftDone').style.display = 'block';
+  });
+
+  // --- fotoğrafa basınca büyüt ---
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  document.querySelector('.gallery').addEventListener('click', e=>{
+    const card = e.target.closest('.polaroid');
+    if(!card) return;
+    const img = card.querySelector('img');
+    if(!img) return;                      // fotoğraf eklenmemişse bir şey yapma
+    lbImg.src = img.currentSrc || img.src;
+    lbImg.alt = img.alt || '';
+    lightbox.classList.add('open');
+  });
+  function closeLb(){ lightbox.classList.remove('open'); lbImg.src=''; }
+  lightbox.addEventListener('click', closeLb);
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeLb(); });
+
+  // --- uçuşan kalpler ---
+  function rainHearts(){
+    const hearts = ['❤️','🧡','💛','🎁'];
+    for(let i=0;i<10;i++){
+      const h = document.createElement('div');
+      h.className='floaty';
+      h.textContent = hearts[Math.floor(Math.random()*hearts.length)];
+      h.style.left = Math.random()*100 + 'vw';
+      h.style.animationDelay = (Math.random()*0.6)+'s';
+      h.style.fontSize = (1.1 + Math.random()*1.1)+'rem';
+      document.body.appendChild(h);
+      setTimeout(()=>h.remove(), 3600);
+    }
+  }
+</script>
+</body>
+</html>
